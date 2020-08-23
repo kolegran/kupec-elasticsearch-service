@@ -1,13 +1,13 @@
 package com.cherkassydevelopment.elasticsearch;
 
-import org.springframework.boot.SpringApplication;
+import com.cherkassydevelopment.elasticsearch.es_configuration.ElasticsearchConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
 @SpringBootApplication
 public class ElasticsearchApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ElasticsearchApplication.class, args);
+        new SpringApplicationBuilder(ElasticsearchConfiguration.class, ElasticsearchApplication.class).application().run(args);
     }
-
 }
