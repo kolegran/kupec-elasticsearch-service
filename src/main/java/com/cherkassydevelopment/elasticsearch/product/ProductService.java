@@ -3,6 +3,8 @@ package com.cherkassydevelopment.elasticsearch.product;
 import com.cherkassydevelopment.elasticsearch.elasticsearch.ElasticsearchService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
@@ -21,10 +23,7 @@ public class ProductService {
         return elasticsearchService.getIndexName(Product.class);
     }
 
-    public void saveAllProducts() {
-        final Product product = new Product();
-        product.setName("USB Adapter Bluetooth 4.0");
-        product.setCode(7947);
-        productRepository.save(product);
+    public void saveAllProducts(List<Product> products) {
+        productRepository.saveAll(products);
     }
 }

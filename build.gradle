@@ -13,6 +13,7 @@ repositories {
 
 dependencies {
     compile 'org.springframework.data:spring-data-elasticsearch:4.0.3.RELEASE'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.11.1'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
