@@ -3,7 +3,11 @@ package com.cherkassydevelopment.elasticsearch.product;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
-@Document(indexName = "products", shards = 10)
+@Document(
+    indexName = ProductIndexAttributes.indexName,
+    shards = ProductIndexAttributes.shards,
+    replicas = ProductIndexAttributes.replicas
+)
 public class Product {
 
     @Id
