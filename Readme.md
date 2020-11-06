@@ -1,6 +1,8 @@
 ## How to use
-##### 1. Run `docker-compose up`
+##### 1. Run `docker-compose up` for running ElasticSearch
 ##### 2. Run application and call endpoints
+##### 3. Use Swagger API to view the available endpoints
+`http://localhost:8080/api/swagger-ui.html`
 
 #### For checking you can use basic Rest API
 

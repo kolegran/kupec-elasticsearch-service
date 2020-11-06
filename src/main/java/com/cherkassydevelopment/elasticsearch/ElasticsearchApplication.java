@@ -8,6 +8,11 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 public class ElasticsearchApplication {
 
     public static void main(String[] args) {
-        new SpringApplicationBuilder(ElasticsearchConfiguration.class, ElasticsearchApplication.class).application().run(args);
+        new SpringApplicationBuilder(
+            ElasticsearchConfiguration.class,
+            ElasticsearchApplication.class
+        )
+            .application()
+            .run(args);
     }
 }
