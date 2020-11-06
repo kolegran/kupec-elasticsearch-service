@@ -13,6 +13,10 @@ public class ElasticsearchService {
         this.elasticsearchOperations = elasticsearchOperations;
     }
 
+    public void createIndex(String indexName) {
+        elasticsearchOperations.indexOps(IndexCoordinates.of(indexName));
+    }
+
     public void createIndex(Class<?> c) {
         elasticsearchOperations.indexOps(c);
     }
@@ -21,7 +25,7 @@ public class ElasticsearchService {
         return elasticsearchOperations.getIndexCoordinatesFor(c).getIndexName();
     }
 
-    public boolean removeIndexByName(String name) {
-        return elasticsearchOperations.indexOps(IndexCoordinates.of(name)).delete();
+    public boolean removeIndexByName(String indexName) {
+        return elasticsearchOperations.indexOps(IndexCoordinates.of(indexName)).delete();
     }
 }

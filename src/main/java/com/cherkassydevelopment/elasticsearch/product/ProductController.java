@@ -4,14 +4,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static com.cherkassydevelopment.elasticsearch.product.ProductApiMappings.SAVE_PRODUCTS_MAPPING;
+
 @RestController
-@RequestMapping("/products")
 public class ProductController {
+
     private final ProductService productService;
 
     public ProductController(ProductService productService) {
@@ -19,20 +21,19 @@ public class ProductController {
     }
 
     @PostMapping("/index")
-    public ResponseEntity<Void> createIndex() {
-        productService.createIndex();
+    public ResponseEntity<Void> createIndex(@RequestParam String indexName) {
+        productService.createIndex(indexName);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/index/name")
-    public ResponseEntity<String> getIndexName() {
-        // TODO: add tests
-        return ResponseEntity.ok(productService.getIndexName());
-    }
-
-    @PostMapping("/save")
+    @PostMapping(SAVE_PRODUCTS_MAPPING)
     public ResponseEntity<Void> saveProducts(@RequestBody List<Product> products) {
         productService.saveAllProducts(products);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/products")
+    public List<Product> searchProducts(@RequestParam String indexName, @RequestParam String field, @RequestParam String text) {
+        return productService.getProductsByFieldAndText(indexName, field, text);
     }
 }

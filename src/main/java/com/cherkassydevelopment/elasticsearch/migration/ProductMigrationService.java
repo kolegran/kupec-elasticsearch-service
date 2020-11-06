@@ -12,11 +12,12 @@ import java.util.List;
 @Service
 public class ProductMigrationService {
 
+    private static final String PRODUCTS_JSON = "products.json";
+
     public List<Product> parseProductsJson() {
         final List<Product> products = new ArrayList<>();
-        try (InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("products.json")) {
-            final ObjectMapper objectMapper = new ObjectMapper();
-            final JsonNode jsonNode = objectMapper.readTree(inputStream);
+        try (InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(PRODUCTS_JSON)) {
+            final JsonNode jsonNode = new ObjectMapper().readTree(inputStream);
             for (JsonNode node : jsonNode) {
                 final Product product = new Product();
                 product.setCode(node.get("productCode").asInt());
@@ -25,13 +26,12 @@ public class ProductMigrationService {
             }
             return products;
         } catch (Exception e) {
-            // TODO: handle exception
-            throw new JsonParseCustomException("Cannot parse JSON", e);
+            throw new ProductsJsonParseException("Cannot parse products JSON", e);
         }
     }
 
-    private static class JsonParseCustomException extends RuntimeException {
-        public JsonParseCustomException(String message, Exception e) {
+    private static class ProductsJsonParseException extends RuntimeException {
+        public ProductsJsonParseException(String message, Exception e) {
             super(message, e);
         }
     }
