@@ -30,7 +30,7 @@ public class ProductMigrationService {
         }
     }
 
-    private static class ProductsJsonParseException extends RuntimeException {
+    private static final class ProductsJsonParseException extends RuntimeException {
         public ProductsJsonParseException(String message, Exception e) {
             super(message, e);
         }

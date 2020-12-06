@@ -6,11 +6,9 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import org.springframework.data.elasticsearch.annotations.Setting;
 
-//@Document(
-//    indexName = ProductIndexAttributes.INDEX_NAME,
-//    shards = ProductIndexAttributes.SHARDS,
-//    replicas = ProductIndexAttributes.REPLICAS
-//)
+@Document(
+    indexName = ProductIndexAttributes.INDEX_NAME
+)
 @Setting(settingPath = "analyzer.json")
 public class Product {
 
